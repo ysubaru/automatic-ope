@@ -1,0 +1,7 @@
+- name: exec shellscript
+  shell: ../../script/playout.sh
+  register: return_from_shell
+  changed_when: false
+
+- debug:
+    var: return_from_shell.stdout_lines

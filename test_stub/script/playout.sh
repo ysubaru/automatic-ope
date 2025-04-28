@@ -1,0 +1,9 @@
+cat ../script/playout_test_1.txt
+#cat ../script/playout_test_2.txt
+#cat ../script/playout_test_3.txt
+#cat ../script/playout_skipped.txt
+#cat ../script/playout_succeeded.txt
+#cat ../script/playout_unreachable.txt
+#cat ../script/playout_failed.txt
+#cat ../script/playout_deadflow1.txt
+#cat ../script/playout_deadflow2.txt
