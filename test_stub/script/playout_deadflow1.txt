@@ -1,0 +1,80 @@
+PLAY [vrouter deadflow workaround] ****************************************************************************************
+
+TASK [Target_hostname validate] *******************************************************************************************
+skipping: [target]
+
+TASK [Execute deadflow command] *******************************************************************************************
+ok: [target]
+
+TASK [Check latest deadflow_log_file] *************************************************************************************
+ok: [target -> {{ansible_ssh_host2 | default ('unavailable')}}]
+
+TASK [Debug file exist retult] ********************************************************************************************
+ok: [target] => {
+    "file_result.stat.exists": true
+}
+
+TASK [Remove latest deadflow_log_file] ************************************************************************************
+skipping: [target]
+
+TASK [Create new deadflow_log_file] ***************************************************************************************
+skipping: [target]
+
+TASK [debug] **************************************************************************************************************
+skipping: [target]
+
+TASK [Create check_deadflow/ directory] ***********************************************************************************
+skipping: [target]
+
+TASK [Create new deadflow_log_file] ***************************************************************************************
+skipping: [target]
+
+TASK [debug] **************************************************************************************************************
+skipping: [target]
+
+TASK [Initialize lists] ***************************************************************************************************
+ok: [target]
+
+TASK [Get latest logfile data] ********************************************************************************************
+ok: [target -> {{ansible_ssh_host2 | default ('unavailable')}}]
+
+TASK [Get deadflow to evactied] *******************************************************************************************
+ok: [target]
+
+TASK [Get deadflow_index_list] ********************************************************************************************
+ok: [target] => (item=  5128448<=>1975532      192.168.6.137:80                                    6 (37))
+
+TASK [Beforehand flow --get] **********************************************************************************************
+ok: [target] => (item=5128448)
+
+TASK [Evicted deadflow] ***************************************************************************************************
+changed: [target] => (item=5128448)
+
+TASK [After flow --get] ***************************************************************************************************
+ok: [target] => (item=5128448)
+
+TASK [after_flow_get to list] *********************************************************************************************
+ok: [target]
+
+TASK [Store deadflow_info_list and delete_result_list] ********************************************************************
+ok: [target] => (item=None)
+ok: [target]
+
+TASK [Remove latest deadflow_log_file] ************************************************************************************
+ok: [target -> {{ansible_ssh_host2 | default ('unavailable')}}]
+
+TASK [create new deadflow_log_file] ***************************************************************************************
+ok: [target -> {{ansible_ssh_host2 | default ('unavailable')}}]
+
+TASK [SNOW Save deadflow_info] ********************************************************************************************
+ok: [target -> {{ansible_ssh_host2 | default ('unavailable')}}] => {
+    "msg": "##### SNOW Save deadflow_info_list: Flow Index:                   5128448\nFlow Generation ID:           21\nReverse Flow Index:           1975532\nVRF:                          37\nDestination VRF:              37\nFlow Source:                  [192.168.6.137]:80   \nFlow Destination:             [10.10.2.11]:2570 \nFlow Protocol:                TCP\nFlow Action:                  FORWARD\nExpected Source:              Source Information:           VRF: 37\n                              Layer 3 Route Information\n                              Matching Route: 0.0.0.0/0 \n                              Destination Information:      VRF: 37\n                              Layer 3 Route Information\n                              Matching Route: 10.10.2.11/32\n                              NextHop(Index, VRF, Type): 2088, 37, ENCAP\n                              Egress Interface(Index, VRF, OS): vif0/16, 37, tap57d2b307-ba\n                              Interface Statistics(Out, In, Errors): 5521710972, 8099896179, 0\n\n                              Layer 2 Route Information\n                              DestinationMAC: fa:16:3e:c8:24:c9\n                              NextHop(Index, VRF, Type): 2092, 37, ENCAP\n                              Egress Interface(Index, VRF, OS): vif0/16, 37, tap57d2b307-ba\n                              Interface Statistics(Out, In, Errors): 5521710972, 8099896179, 0\n\nFlow Flags:                   EVICT CANDIDATE MODIFIED \nTCP FLAGS:                    SYN, SYN(REVERSE), ESTABLISHED, ESTABLISHED(REVERSE), FIN, FIN(REVERSE), HALFCLOSED, DEAD, \nUDP Source Port:              53978\n\nFlow Statistics:              2/140\nSystem Wide Packet Drops:     589236232\n                              Reverse Path Failures: 14\n                              Flow Block Drops: 7413 #####"
+}
+
+TASK [SNOW Save delete_result_list] ***************************************************************************************
+ok: [target -> {{ansible_ssh_host2 | default ('unavailable')}}] => {
+    "msg": "##### SNOW Save delete_result_list: Succeed #####"
+}
+
+PLAY RECAP ****************************************************************************************************************
+target                     : ok=16   changed=1    unreachable=0    failed=0
